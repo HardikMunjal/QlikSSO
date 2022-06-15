@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <title>Express HTML</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>
+    async function handleAutomaticLogin() {
+      let tokenx;
+      await fetch("https://localhost:4000/qliktoken").then(res => {
+
+        res.json().then(function (response) {
+          console.log('oops', response);
+          tokenx = response.qliktoken;
+
+
+
+          console.log('token', tokenx);
+          fetch(
+            `https://xco3f3m5mieubxr.us.qlikcloud.com/login/jwt-session?qlik-web-integration-id=j7BQRdU8oUucp0meIsH19ajRhId8ta8t`,
+            {
+              method: "POST",
+              credentials: "include",
+              mode: "cors",
+              headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${tokenx}`,
+                "qlik-web-integration-id": 'j7BQRdU8oUucp0meIsH19ajRhId8ta8t'
+              },
+              rejectunAuthorized: false
+            }
+          );
+
+        })
+
+      });
+    }
+
+    handleAutomaticLogin();
+  </script>
+
+  <script>
+
+    window.onload = function () {
+      var url;
+      setTimeout(function () {
+        document.getElementById("myframe").setAttribute("src", "https://xco3f3m5mieubxr.us.qlikcloud.com/single/?appid=09b4ffec-e6c3-4ace-b93a-f4b5dc6a5db0&obj=yvHpty&theme=horizon&opt=nointeraction,noselections,currsel&select=$::SITE,Venice");
+        document.getElementById('myframe').src = "https://xco3f3m5mieubxr.us.qlikcloud.com/single/?appid=09b4ffec-e6c3-4ace-b93a-f4b5dc6a5db0&obj=yvHpty&select=$::SITE,Venice";
+
+        let params = (new URL(document.location)).searchParams;
+        let siteid = params.get("siteid") || 1;
+        let src1 = "https://xco3f3m5mieubxr.us.qlikcloud.com/single/?appid=09b4ffec-e6c3-4ace-b93a-f4b5dc6a5db0&obj=yvHpty&select=$::SITE,Venice"
+        let src2 = "https://xco3f3m5mieubxr.us.qlikcloud.com/single/?appid=09b4ffec-e6c3-4ace-b93a-f4b5dc6a5db0&obj=yvHpty&select=$::SITE,Amsterdam"
+        let mainSrc;
+        if (siteid == 1) {
+          mainSrc = src1;
+        } else {
+          mainSrc = src2;
+        }
+
+        document.getElementsByTagName("iframe")[0].src = mainSrc;
+      }, 1000)
+
+
+
+
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <div id="myframe">
+    <iframe width="50%" height="350" src=""></iframe>
+  </div>
+
+  <iframe frameborder="0" scrolling="no" class="frameboxlive" src=""></iframe>
+
+</body>
+
+</html>

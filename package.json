@@ -1,0 +1,23 @@
+{
+  "name": "swift-market-frontend",
+  "description": "frontend module",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.24",
+    "npm": "2.14.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "csvtojson": "^2.0.8",
+    "ejs": "~2.3.1",
+    "express": "4.4.5",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.5.1",
+    "open": "0.0.5",
+    "qlik-auth": "^1.2.3",
+    "request": "^2.88.0",
+    "uid-safe": "^2.1.5",
+    "ws": "^6.0.0"
+  }
+}

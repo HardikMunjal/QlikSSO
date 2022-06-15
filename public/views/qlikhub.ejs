@@ -1,0 +1,11 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+	
+   	var rows =<%- JSON.stringify(data) %>;
+    var row = JSON.parse(rows);
+	window.open(row.redirect,"_self");
+</script>
+</body>
